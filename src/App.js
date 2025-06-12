@@ -27,28 +27,34 @@ function App() {
   const params = new URLSearchParams(window.location.search);
   const isResultsOnly = params.has("results");
 
-  useEffect(() => {
-    const fetchVotes = async () => {
-      const votesCol = collection(db, "votes");
-      const votesSnapshot = await getDocs(votesCol);
-      const voteList = votesSnapshot.docs.map((doc) => doc.data());
+useEffect(() => {
+  const fetchVotes = async () => {
+    const votesCol = collection(db, "votes");
+    const votesSnapshot = await getDocs(votesCol);
+    const voteList = votesSnapshot.docs.map((doc) => doc.data());
 
-      const totals = {};
-      voteList.forEach((vote) => {
-        Object.entries(vote).forEach(([option, value]) => {
-          totals[option] = (totals[option] || 0) + value;
-        });
+    console.log("Raw vote data:", voteList);  // Log raw data
+
+    const totals = {};
+    voteList.forEach((vote) => {
+      Object.entries(vote).forEach(([option, value]) => {
+        totals[option] = (totals[option] || 0) + Number(value); // convert to number
       });
+    });
 
-      const formatted = OPTIONS.map((option) => ({
-        name: option,
-        value: totals[option] || 0,
-      }));
+    const formatted = OPTIONS.map((option) => ({
+      name: option,
+      value: totals[option] || 0,
+    }));
 
-      setResults(formatted);
-    };
+    console.log("Formatted totals:", formatted);  // Log processed data
 
-    fetchVotes();
+    setResults(formatted);
+  };
+
+  fetchVotes();
+}, [userHasVoted]);
+
   }, [userHasVoted]);
 
   const handleChange = (option, value) => {
