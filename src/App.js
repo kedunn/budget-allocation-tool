@@ -55,8 +55,6 @@ useEffect(() => {
   fetchVotes();
 }, [userHasVoted]);
 
-  }, [userHasVoted]);
-
   const handleChange = (option, value) => {
     const intValue = parseInt(value) || 0;
     const newVotes = { ...votes, [option]: intValue };
