@@ -2,17 +2,13 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
+// Replace the config below with your actual Firebase config from Firebase console
 const firebaseConfig = {
-  apiKey: "AIzaSyDPGIGZR2MXUV8iVAx50Qofc5XYGGevkbI",
-  authDomain: "cpdd-pitch-voting.firebaseapp.com",
-  projectId: "cpdd-pitch-voting",
-  storageBucket: "cpdd-pitch-voting.appspot.com",
-  messagingSenderId: "237282774600",
-  appId: "1:237282774600:web:2a1b9fd512a40bc647127d",
-  measurementId: "G-73J99DZ0SY"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  // ... other config fields
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-export { db };
+export const db = getFirestore(app);
