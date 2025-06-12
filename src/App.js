@@ -64,17 +64,24 @@ useEffect(() => {
     }
   };
 
-  const handleSubmit = async (event) => {
-  event.preventDefault();
-  console.log("Submit button clicked");
-    const total = Object.values(votes).reduce((a, b) => a + b, 0);
-    if (total !== budget) {
-      alert(`You must allocate exactly ${budget} points.`);
-      return;
-    }
+const handleSubmit = async () => {
+  console.log("Submit clicked");
+  const total = Object.values(votes).reduce((a, b) => a + b, 0);
+  console.log("Total allocated:", total);
+  if (total !== budget) {
+    alert(`You must allocate exactly ${budget} points.`);
+    return;
+  }
+  try {
+    console.log("Submitting votes:", votes);
     await addDoc(collection(db, "votes"), votes);
+    console.log("Vote submitted successfully");
     setUserHasVoted(true);
-  };
+  } catch (error) {
+    console.error("Error submitting vote:", error);
+    alert("There was an error submitting your vote. Please try again.");
+  }
+};
 
   const clearRankings = async () => {
     if (!window.confirm("Clear all votes?")) return;
