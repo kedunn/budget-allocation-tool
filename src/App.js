@@ -113,32 +113,41 @@ const handleSubmit = async () => {
     );
   }
 
-  return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">Budget Allocation Tool</h1>
-      {OPTIONS.map((option) => (
-        <div key={option} className="mb-2">
-          <label className="mr-2">{option}:</label>
-          <input
-            type="number"
-            min="0"
-            max={budget}
-            value={votes[option] || ""}
-            onChange={(e) => handleChange(option, e.target.value)}
-            className="border p-1 rounded"
-          />
-        </div>
-      ))}
-      <p className="mt-2">Remaining: {budget - Object.values(votes).reduce((a, b) => a + b, 0)}</p>
-      <button
-        onClick={handleSubmit}
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-      >
-        Submit Vote
-      </button>
-    </div>
-  );
-}
+ return (
+  <div className="p-6 max-w-4xl mx-auto">
+    <h1 className="text-3xl font-bold mb-4">Budget Allocation Tool</h1>
+    {OPTIONS.map((option) => (
+      <div key={option} className="mb-2">
+        <label className="mr-2">{option}:</label>
+        <input
+          type="number"
+          min="0"
+          max={budget}
+          value={votes[option] || ""}
+          onChange={(e) => handleChange(option, e.target.value)}
+          className="border p-1 rounded"
+        />
+      </div>
+    ))}
+    <p className="mt-2">
+      Remaining: {budget - Object.values(votes).reduce((a, b) => a + b, 0)}
+    </p>
+
+    <button
+      onClick={handleSubmit}
+      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+    >
+      Submit Vote
+    </button>
+
+    <button
+      onClick={() => console.log("Test button clicked!")}
+      className="mt-4 px-4 py-2 bg-green-600 text-white rounded"
+    >
+      Test Console Log
+    </button>
+  </div>
+);
 
 export default App;
 
