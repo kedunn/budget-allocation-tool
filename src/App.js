@@ -64,7 +64,9 @@ useEffect(() => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+  event.preventDefault();
+  console.log("Submit button clicked");
     const total = Object.values(votes).reduce((a, b) => a + b, 0);
     if (total !== budget) {
       alert(`You must allocate exactly ${budget} points.`);
