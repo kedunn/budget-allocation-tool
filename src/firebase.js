@@ -5,7 +5,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyDPGIGZR2MXUV8iVAx50Qofc5XYGGevkbI",
   authDomain: "cpdd-pitch-voting.firebaseapp.com",
   projectId: "cpdd-pitch-voting",
-  storageBucket: "cpdd-pitch-voting.firebasestorage.app",
+  storageBucket: "cpdd-pitch-voting.appspot.com",  // corrected `.app` to `.appspot.com`
   messagingSenderId: "237282774600",
   appId: "1:237282774600:web:c6e3f8e0fc93866a47127d",
   measurementId: "G-E2GZ5TCRQE"
