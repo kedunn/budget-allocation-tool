@@ -148,6 +148,7 @@ const handleSubmit = async () => {
     </button>
   </div>
 );
+}
 
 export default App;
 
